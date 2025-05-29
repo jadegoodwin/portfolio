@@ -1,8 +1,5 @@
 
 # Jade Goodwin | Data Analyst Portfolio
----
-
-# Jade Goodwin
 
 📍 Gainesville, FL  
 📧 [jaden.goodwin1@outlook.com](mailto:jaden.goodwin1@outlook.com)   
