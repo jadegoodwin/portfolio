@@ -1,13 +1,11 @@
----
-layout: default
-title: Jade Goodwin | Data Analyst Portfolio
+
+# Jade Goodwin | Data Analyst Portfolio
 ---
 
 # Jade Goodwin
 
 📍 Gainesville, FL  
-📧 [jaden.goodwin1@outlook.com](mailto:jaden.goodwin1@outlook.com)  
-📞 425-231-5935  
+📧 [jaden.goodwin1@outlook.com](mailto:jaden.goodwin1@outlook.com)   
 🔗 [LinkedIn](https://linkedin.com/in/jade-goodwin-9a3152254)  
 🔗 GitHub: [@jade-goodwin](https://github.com/jade-goodwin)  
 
