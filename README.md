@@ -4,19 +4,19 @@
 
 - <b>Logistic Regression Analysis of the Global Terrorism Database</b>
   - <a href="https://github.com/jadegoodwin/portfolio/blob/main/terrorism-logistic-regression.pdf?raw=true">Research Paper</a>
-  - <li><a href="https://github.com/jadegoodwin/portfolio/blob/main/GTD_logistic_regression_ppt.pptx?raw=true">PowerPoint Presentation</a></li>
-  - <li><a href="https://github.com/jadegoodwin/portfolio/blob/main/logistic_regression_script.R?raw=true">R Studio Script</a></li>
+  - <a href="https://github.com/jadegoodwin/portfolio/blob/main/terrorism.pptx?raw=true">PowerPoint Presentation</a>
+  - <a href="https://github.com/jadegoodwin/portfolio/blob/main/projects-script.R?raw=true">R Studio Script</a>
 - <b>Excel Analysis of Cybersecurity Through the Effects of Globalization</b>
-  - [Research Paper](https://github.com/jadegoodwin/portfolio/blob/main/globalization-cybersecurity.pdf) <b>
+  - <a href="https://github.com/jadegoodwin/portfolio/blob/main/globalization-cybersecurity.pdf?raw=true">Research Paper</a>
 - <b>SPSS-IBM Analysis of Crime in Relation to Housing Type</b>
-  - [Research Paper](https://github.com/jadegoodwin/portfolio/blob/main/crime-housing.pdf)
+  - <a href="https://github.com/jadegoodwin/portfolio/blob/main/crime-housing.pdf?raw=true">Research Paper</a>
 
 <h2>📺 National Security Projects:</h2>
 
 - <b>Papers Written on Topics of Interest</b>
-  - [The China-Taiwan Conflict in Review](https://www.youtube.com/watch?v=a83ASGn_V_s)
-  - [Danger Zone by Hal Brands Review](https://www.youtube.com/watch?v=uHy3oM7NnoU)
-  - [The Future of National Security in Review](https://www.youtube.com/watch?v=N-L9hklSlNk)
+  - <a href="https://github.com/jadegoodwin/portfolio/blob/main/china-tawiwan-conflict.pdf?raw=true">The China-Taiwan Conflict in Review</a>
+  - <a href="https://github.com/jadegoodwin/portfolio/blob/main/danger-zone-review.pdf?raw=true">Danger Zone by Hal Brands Analysis</a>
+  - <a href="https://github.com/jadegoodwin/portfolio/blob/main/future-national-security.pdf?raw=true">The Future of National Security in Review</a>
 
 <h2> 🤳 Connect with me:</h2>
 
