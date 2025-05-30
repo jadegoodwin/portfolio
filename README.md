@@ -4,9 +4,8 @@
 
 - <b>Logistic Regression Analysis of the Global Terrorism Database</b>
   - <a href="https://github.com/jadegoodwin/portfolio/blob/main/terrorism-logistic-regression.pdf?raw=true">Research Paper</a>
-
-  - [PowerPoint Presentation](https://github.com/joshmadakor1/Algorithms-Practice)
-  - [R Studio Script](https://github.com/joshmadakor1/Algorithms-Practice)
+  - <li><a href="https://github.com/jadegoodwin/portfolio/blob/main/GTD_logistic_regression_ppt.pptx?raw=true">PowerPoint Presentation</a></li>
+  - <li><a href="https://github.com/jadegoodwin/portfolio/blob/main/logistic_regression_script.R?raw=true">R Studio Script</a></li>
 - <b>Excel Analysis of Cybersecurity Through the Effects of Globalization</b>
   - [Research Paper](https://github.com/jadegoodwin/portfolio/blob/main/globalization-cybersecurity.pdf) <b>
 - <b>SPSS-IBM Analysis of Crime in Relation to Housing Type</b>
