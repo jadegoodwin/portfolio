@@ -1,99 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jade Goodwin | Data Analyst Portfolio</title>
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <h1>Jade Goodwin</h1>
-      <p>Data Analyst | Criminology, Cybersecurity & Global Trends</p>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#interests">Interests</a>
-      </nav>
-    </div>
-  </header>
+<h1>Hi, I'm Jade! <br/><a href="https://github.com/jadegoodwin/">Recent Graduate</a> | <a href="www.linkedin.com/in/jade-goodwin-9a3152254/">Data Analyst</a>
 
-  <section id="about">
-    <div class="container">
-      <img src="assets/professionalish.jpg" alt="Jade Goodwin" class="profile-img"/>
-      <p>
-        I'm a data analyst based in Gainesville, FL with a background in criminology, international relations, and data science. 
-        I use data visualization, regression modeling, and statistical software to uncover actionable insights. 
-        Currently pursuing a B.A. at UF, I’m expanding my skills in SQL and cybersecurity to deepen my impact in national and global security.
-      </p>
-    </div>
-  </section>
+<h2>👨‍💻 Data Analysis Projects:</h2>
 
-  <section id="projects">
-    <div class="container">
-      <h2>Projects</h2>
+- <b>Logistic Regression Analysis of the Global Terrorism Database</b>
+  - [Research Paper](https://github.com/joshmadakor1/Algorithms-Practice)
+  - [PowerPoint Presentation](https://github.com/joshmadakor1/Algorithms-Practice)
+  - [R Studio Script](https://github.com/joshmadakor1/Algorithms-Practice)
+- <b>Excel Analysis of Cybersecurity Through the Effects of Globalization</b>
+  - [Research Paper](https://github.com/joshmadakor1/4chan-Image-Analysis-Middleware-C964) <b>
+- <b>SPSS-IBM Analysis of Crime in Relation to Housing Type</b>
+  - [Research Paper](https://github.com/joshmadakor1/Sentinel-Lab)
 
-      <div class="project">
-        <h3>🏚️ Crime and Housing-Type Analysis</h3>
-        <p>Explores the correlation between home invasions and public housing using NCVS data, guided by Social Disorganization and Routine Activity Theories.</p>
-        <a href="assets/crime-housing.pdf" target="_blank">View PDF</a>
-      </div>
+<h2>📺 National Security Projects:</h2>
 
-      <div class="project">
-        <h3>🌐 Globalization and Cybersecurity</h3>
-        <p>Analyzes the relationship between technological trade and data breaches in the U.S., showing a strong positive correlation from 2012–2023.</p>
-        <a href="assets/globalization-cybersecurity.pdf" target="_blank">View PDF</a>
-      </div>
+- <b>Papers Written on Topics of Interest</b>
+  - [The China-Taiwan Conflict in Review](https://www.youtube.com/watch?v=a83ASGn_V_s)
+  - [Danger Zone by Hal Brands Review](https://www.youtube.com/watch?v=uHy3oM7NnoU)
+  - [The Future of National Security in Review](https://www.youtube.com/watch?v=N-L9hklSlNk)
 
-      <div class="project">
-        <h3>📊 Predicting Terrorist Attack Success</h3>
-        <p>Uses logistic regression in R to predict the success of terrorist incidents based on GTD data (2000–2020), focusing on attack type, region, and method.</p>
-        <a href="assets/terrorism-logistic-regression.pdf" target="_blank">View PDF</a>
-      </div>
-    </div>
-  </section>
+<h2> 🤳 Connect with me:</h2>
 
-  <section id="skills">
-    <div class="container">
-      <h2>Skills</h2>
-      <ul>
-        <li>Languages: English (native), Spanish (advanced)</li>
-        <li>Programming: R (proficient), SQL (basic)</li>
-        <li>Databases: MS SQL Server</li>
-        <li>Tools: SPSS IBM, R Studio, MS Excel (VLOOKUP, Pivot Tables), PowerPoint, Word</li>
-      </ul>
-    </div>
-  </section>
 
-  <section id="education">
-    <div class="container">
-      <h2>Education & Certifications</h2>
-      <p><strong>The University of Florida</strong>, B.A. in Criminology, Minor in Spanish (May 2025)</p>
-      <ul>
-        <li>Certification in Data Analytics</li>
-        <li>Certification in International Relations</li>
-      </ul>
-    </div>
-  </section>
+[<img align="left" alt="JoshMadakor | LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
+[<img align="left" alt="JoshMadakor | Instagram" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />][instagram]
 
-  <section id="interests">
-    <div class="container">
-      <h2>Interests</h2>
-      <ul>
-        <li>National Security</li>
-        <li>Cybersecurity (CompTIA Security+ in progress)</li>
-        <li>Weight Lifting</li>
-        <li>Language Learning (advancing SQL)</li>
-      </ul>
-    </div>
-  </section>
+[instagram]: https://www.instagram.com/jadeegoodwin/
+[linkedin]: https://linkedin.com/in/jade-goodwin-9a3152254
 
-  <footer>
-    <div class="container">
-      <p>📧 jaden.goodwin1@outlook.com | 📞 (425) 231-5935 | 🌐 <a href="https://jade.goodwin.github.io/portfolio/">GitHub Portfolio</a></p>
-    </div>
-  </footer>
-</body>
-</html>
+<!--
+**joshmadakor1/joshmadakor1** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+
+- 🔭 I’m currently working on the CompTIA Security+ 701 certification
+- 🌱 I’m currently advancing my SQL programming skills
+- 👯 I am a recent graduate from the University of Florida with a B.A. as well as two certifications and am in pursuit of an entry-level job in data analysis or intelligence analysis
+- 🤔 I’m planning on beginning graduate school in the next 2 years
+- 💬 Ask me about national security and government intelligence (I am currently reading the Puzzle Palace by James Bramford)
+- 📫 I would love to collaborate on analytical projects that would help me advance my skills in data analysis and SQL
+- 😄 Pronouns: she/her
+- ⚡ Fun fact: I am fluent in Spanish and I learned how to sail when I was 8 years old
+-->
+
