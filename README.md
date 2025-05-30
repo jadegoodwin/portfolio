@@ -1,45 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jade Goodwin | Data Analyst Portfolio</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Jade Goodwin</h1>
+      <p>Data Analyst | Criminology, Cybersecurity & Global Trends</p>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#interests">Interests</a>
+      </nav>
+    </div>
+  </header>
 
-# Jade Goodwin | Data Analyst Portfolio
+  <section id="about">
+    <div class="container">
+      <img src="assets/professionalish.jpg" alt="Jade Goodwin" class="profile-img"/>
+      <p>
+        I'm a data analyst based in Gainesville, FL with a background in criminology, international relations, and data science. 
+        I use data visualization, regression modeling, and statistical software to uncover actionable insights. 
+        Currently pursuing a B.A. at UF, I’m expanding my skills in SQL and cybersecurity to deepen my impact in national and global security.
+      </p>
+    </div>
+  </section>
 
-📍 Gainesville, FL  
-📧 [jaden.goodwin1@outlook.com](mailto:jaden.goodwin1@outlook.com)   
-🔗 [LinkedIn](https://linkedin.com/in/jade-goodwin-9a3152254)  
-🔗 GitHub: [@jade-goodwin](https://github.com/jade-goodwin)  
+  <section id="projects">
+    <div class="container">
+      <h2>Projects</h2>
 
----
+      <div class="project">
+        <h3>🏚️ Crime and Housing-Type Analysis</h3>
+        <p>Explores the correlation between home invasions and public housing using NCVS data, guided by Social Disorganization and Routine Activity Theories.</p>
+        <a href="assets/crime-housing.pdf" target="_blank">View PDF</a>
+      </div>
 
-## 💼 Projects
+      <div class="project">
+        <h3>🌐 Globalization and Cybersecurity</h3>
+        <p>Analyzes the relationship between technological trade and data breaches in the U.S., showing a strong positive correlation from 2012–2023.</p>
+        <a href="assets/globalization-cybersecurity.pdf" target="_blank">View PDF</a>
+      </div>
 
-### Global Terrorism Database Analysis *(April 2025)*
-- Created a Tableau dashboard with 8 visualizations identifying market trends and customer opportunities.
-- Analyzed 8,000+ rows with Python, identifying 3 customer types and 2 strategies.
-- Developed 5 KPIs to drive insights on target markets.
+      <div class="project">
+        <h3>📊 Predicting Terrorist Attack Success</h3>
+        <p>Uses logistic regression in R to predict the success of terrorist incidents based on GTD data (2000–2020), focusing on attack type, region, and method.</p>
+        <a href="assets/terrorism-logistic-regression.pdf" target="_blank">View PDF</a>
+      </div>
+    </div>
+  </section>
 
-### Crime and Housing-Type Analysis *(December 2024)*
-- Used SPSS-IBM for performance metrics and department analysis.
-- Automated reporting system via SPSS + Excel VBA; 20% faster reporting.
-- Preprocessed 10,000 rows in Pandas, reducing data time by 25%.
+  <section id="skills">
+    <div class="container">
+      <h2>Skills</h2>
+      <ul>
+        <li>Languages: English (native), Spanish (advanced)</li>
+        <li>Programming: R (proficient), SQL (basic)</li>
+        <li>Databases: MS SQL Server</li>
+        <li>Tools: SPSS IBM, R Studio, MS Excel (VLOOKUP, Pivot Tables), PowerPoint, Word</li>
+      </ul>
+    </div>
+  </section>
 
----
+  <section id="education">
+    <div class="container">
+      <h2>Education & Certifications</h2>
+      <p><strong>The University of Florida</strong>, B.A. in Criminology, Minor in Spanish (May 2025)</p>
+      <ul>
+        <li>Certification in Data Analytics</li>
+        <li>Certification in International Relations</li>
+      </ul>
+    </div>
+  </section>
 
-## 🧠 Skills
+  <section id="interests">
+    <div class="container">
+      <h2>Interests</h2>
+      <ul>
+        <li>National Security</li>
+        <li>Cybersecurity (CompTIA Security+ in progress)</li>
+        <li>Weight Lifting</li>
+        <li>Language Learning (advancing SQL)</li>
+      </ul>
+    </div>
+  </section>
 
-- **Languages**: English (native), Spanish (advanced)
-- **Programming**: R (proficient), SQL (basic)
-- **Tools**: SPSS, RStudio, Excel (Pivot Table, VLOOKUP), MS SQL Server
-- **Other**: MS Office Suite, Tableau
-
----
-
-## 📚 Education
-
-**University of Florida** – *Gainesville, FL*  
-B.A. Criminology, minor in Spanish *(May 2025)*  
-- Certifications: Data Analytics, International Relations
-
----
-
-## 🔐 Interests
-
-National Security, Cybersecurity (CompTIA Security+ in progress), Weight Lifting, Language Learning (SQL advanced study)
-
+  <footer>
+    <div class="container">
+      <p>📧 jaden.goodwin1@outlook.com | 📞 (425) 231-5935 | 🌐 <a href="https://jade.goodwin.github.io/portfolio/">GitHub Portfolio</a></p>
+    </div>
+  </footer>
+</body>
+</html>
