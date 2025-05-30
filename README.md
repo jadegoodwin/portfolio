@@ -3,7 +3,7 @@
 <h2>👨‍💻 Data Analysis Projects:</h2>
 
 - <b>Logistic Regression Analysis of the Global Terrorism Database</b>
-  - <a href="https://github.com/jadegoodwin/portfolio/blob/main/GTD_logistic_regression_final.pdf?raw=true">Research Paper</a>
+  - <a href="https://github.com/jadegoodwin/portfolio/blob/main/terrorism-logistic-regression.pdf?raw=true">Research Paper</a>
 
   - [PowerPoint Presentation](https://github.com/joshmadakor1/Algorithms-Practice)
   - [R Studio Script](https://github.com/joshmadakor1/Algorithms-Practice)
