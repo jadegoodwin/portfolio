@@ -3,13 +3,13 @@
 <h2>👨‍💻 Data Analysis Projects:</h2>
 
 - <b>Logistic Regression Analysis of the Global Terrorism Database</b>
-  - [Research Paper](https://github.com/joshmadakor1/Algorithms-Practice)
+  - [Research Paper](terrorism-logistic-regression-pdf)
   - [PowerPoint Presentation](https://github.com/joshmadakor1/Algorithms-Practice)
   - [R Studio Script](https://github.com/joshmadakor1/Algorithms-Practice)
 - <b>Excel Analysis of Cybersecurity Through the Effects of Globalization</b>
-  - [Research Paper](https://github.com/joshmadakor1/4chan-Image-Analysis-Middleware-C964) <b>
+  - [Research Paper](globalization-cybersecurity.pdf) <b>
 - <b>SPSS-IBM Analysis of Crime in Relation to Housing Type</b>
-  - [Research Paper](https://github.com/joshmadakor1/Sentinel-Lab)
+  - [Research Paper](crime-housing.pdf)
 
 <h2>📺 National Security Projects:</h2>
 
