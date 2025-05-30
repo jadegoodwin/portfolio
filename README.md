@@ -1,9 +1,9 @@
-<h1>Hi, I'm Jade! <br/><a href="https://github.com/jadegoodwin/">Recent Graduate</a> | <a href="www.linkedin.com/in/jade-goodwin-9a3152254/">Data Analyst</a>
+<h1>Hi, I'm Jade! <br/><a href="https://github.com/jadegoodwin/">Recent Graduate</a> | <a href="https://www.linkedin.com/in/jade-goodwin-9a3152254/">Data Analyst</a>
 
 <h2>👨‍💻 Data Analysis Projects:</h2>
 
 - <b>Logistic Regression Analysis of the Global Terrorism Database</b>
-  - [Research Paper](https://github.com/jadegoodwin/portfolio/blob/main/terrorism-logistic-regression-pdf)
+  - <li><a href="https://github.com/jadegoodwin/portfolio/raw/main/GTD_logistic_regression_final.pdf">Research Paper</a></li>
   - [PowerPoint Presentation](https://github.com/joshmadakor1/Algorithms-Practice)
   - [R Studio Script](https://github.com/joshmadakor1/Algorithms-Practice)
 - <b>Excel Analysis of Cybersecurity Through the Effects of Globalization</b>
