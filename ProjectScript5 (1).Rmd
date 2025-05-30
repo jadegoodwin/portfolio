@@ -1,0 +1,358 @@
+---
+title: "STA3180_TerrorismDataset"
+author: "Jade Goodwin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# note: R does not have a "read.xslx" function. You have to convert the spreadsheet to a csv first.
+# Open in Excel > Save As... > .csv
+data_raw = read.csv("globalterrorismdb_0522dist.csv")
+
+```
+
+### 1) Data Filtering
+```{r}
+# 1) filter data to 2000 - 2020
+#head(data_raw)
+data_raw = data_raw[(data_raw$iyear >= 2000) & (data_raw$iyear <= 2020),]
+#head(data_raw)
+
+# 2) remove cases that the dataset doubts are terrorism
+data_raw = data_raw[(data_raw$doubtterr != 1),]
+
+# 2) drop unnecessary features (empty or irrelevant to considered regression)
+hit_vector = c(-1 * c(1:9), -1 * c(11:19), -1 * c(23:26), -1 * c(30:34), -1 * c(36:69), -1 * c(71:81), -1*c(83:98), -1 * (100:135))
+# why did i pick all the ones to remove instead of the ones to keep wtf
+data_cols_removed = data_raw[,hit_vector]
+# editing note: there is not enough data on property value damage for me to include it. I really wanted to,
+# but after all of the cleaning steps, we end up with < 200 samples. It's not enough to do the regression.
+
+
+# 3) removing any rows with negative values (some features use -99 as an error value)
+data_cols_removed <- data_cols_removed[rowSums(data_cols_removed < 0, na.rm = TRUE) == 0, ]
+
+# 4) removing the "unknown" value from the features
+data_cols_removed <- data_cols_removed[data_cols_removed$weaptype1 != 13, ]
+data_cols_removed <- data_cols_removed[data_cols_removed$targtype1 != 13, ]
+data_cols_removed <- data_cols_removed[data_cols_removed$targtype1 != 20, ]
+data_cols_removed <- data_cols_removed[data_cols_removed$attacktype1 != 9, ]
+
+# 5) removing NA and Null
+data_numeric = na.omit(data_cols_removed)
+
+# 6) removing outliers based on IQR method
+snp <- summary(data_numeric$nperps)
+snk <- summary(data_numeric$nkill)
+nperps_IQR = snp[[5]] - snp[[2]]
+nkill_IQR = snk[[5]] - snk[[2]]
+np_LB = snp[[2]] - 1.5*nperps_IQR # lower bound for nperps
+np_UB = snp[[5]] + 1.5*nperps_IQR # upper bound for nperps
+nk_LB = snk[[2]] - 1.5*nkill_IQR # lower bound for nkill
+nk_UB = snk[[5]] + 1.5*nkill_IQR # upper bound for nkill
+
+data_numeric <- data_numeric[(data_numeric$nperps > np_LB) & (data_numeric$nperps < np_UB), ]
+data_processed <- data_numeric[(data_numeric$nkill > nk_LB) & (data_numeric$nkill < nk_UB), ]
+
+# 7) clean up intermediary stuff
+rm(data_numeric, data_cols_removed, data_raw, hit_vector, nk_LB, nk_UB,
+   np_LB, np_UB, nkill_IQR, nperps_IQR, snk, snp)
+
+# 8) attach
+attach(data_processed)
+
+```
+
+
+### 2.) Data Analysis
+```{r echo=FALSE, warning=FALSE, include=FALSE}
+library(magrittr)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(MASS)
+library(BSL)
+library(caret)
+library(pROC)
+```
+
+# Variables
+```{r}
+#Variable cleaning
+#head(data_processed)
+
+#Make categorical variables factors
+data_processed <- data_processed %>% mutate(attacktype1= as.factor(attacktype1), success=as.factor(success), suicide= as.factor(suicide), targtype1=as.factor(targtype1), weaptype1=as.factor(weaptype1), region=as.factor(region))
+
+#Replacing the code with the actual name 
+data_processed <- data_processed %>%
+  mutate(attacktype1 = recode(attacktype1,
+                              `1` = "Assassination",
+                              `2` = "Armed Assault",
+                              `3` = "Bombing",
+                              `4` = "Hijacking",
+                              `5` = "Hostage Taking",
+                              `6` = "Hostage Taking",
+                              `7` = "Infrastructure Attack",
+                              `8` = "Unarmed Assault"))
+
+
+data_processed <- data_processed %>%
+  mutate(region = recode(region,
+                              `1` = "North America",
+                              `2` = "Cental America & Caribbean",
+                              `3` = "South America",
+                              `4` = "East Asia",
+                              `5` = "Southeast Asia",
+                              `6` = "South Asia",
+                              `7` = "Central Asia",
+                              `8` = "Western Europe",
+                              `9`= "Eastern Europe",
+                         `10`= "Middle East & North Africa",
+                         `11` = "Sub-Saharan Africa",
+                         `12` = "Australasia & Oceania"))
+
+data_processed<- data_processed %>%
+  mutate(weaptype1= recode(weaptype1,
+                            `1` = "Biological",
+                              `2` = "Chemical",
+                              `3` = "Radiological",
+                              `4` = "Nuclear",
+                              `5` = "Firearms",
+                              `6` = "Explosives",
+                              `7` = "Fake Weapons",
+                              `8` = "Incendiary",
+                              `9`= "Melee",
+                         `10`= "Vehicle",
+                         `11` = "Sabotage Equiptment",
+                         `12` = "Other"))
+
+data_processed <- data_processed %>%
+  mutate(
+   targtype1 = recode(
+      targtype1,
+      `1` = "Business",
+      `2` = "Government",
+      `3` = "Police",
+      `4` = "Military",
+      `5` = "Abortion Related",
+      `6` = "Airports & Aircraft",
+      `7` = "Diplomatic",
+      `8` = "Educational",
+      `9` = "Food or Water Supply",
+      `10` = "Journalists & Media",
+      `11` = "Maritime",
+      `12` = "NGO",
+      `13` = "Other",
+      `14` = "Private Citizens & Property",
+      `15` = "Religious Figures/Institutions",
+      `16` = "Telecommunication",
+      `17` = "Terrorists/Non-State Militias",
+      `18` = "Tourists",
+      `19` = "Transportation",
+      `21` = "Utilities",
+      `22` = "Political"
+    )
+  )
+
+head(data_processed)
+
+```
+
+
+#Logistic Regression
+```{r}
+#summary(data_processed$success)
+#85% of the cases are classified as success
+#We can make a threshold for nkill instead to use at the binary response? ### USE diff variable for nkill
+#The median kill is 1, we could make a dummy about nkill:
+#data_processed <- data_processed %>% mutate(nkill_dummy= ifelse(nkill>1,1,0))
+#summary(data_processed$nkill_dummy)
+
+#Decided to use success instead of nkill :) 
+
+#In paper: write out the multiple logistic regression  model equaiton
+model1<- glm(success~nperps+suicide+attacktype1+region+weaptype1+targtype1, family="binomial", data=data_processed)
+summary(model1)
+
+#m1<-glm(nkill_dummy~nperps+suicide+attacktype1+region+weaptype1, family="binomial", data=data_processed)
+#summary(m1)
+```
+
+#StepAIC
+```{r}
+#Stepwise model selection
+model0<-glm(success~1, family="binomial", data=data_processed)
+stepAIC(model0, direction= "both", scope=list(upper=model1, lower=model0))
+```
+The model it chooses has 5 predictors: attacktype1, weaptype1, targtype1, region and suicide. 
+
+```{r}
+#Forward selection
+#stepAIC(model0, direction= "forward", scope=list(upper=model1, lower=model0))
+
+#Backward elimination
+#stepAIC(model1)
+
+```
+Same results as stepwise so I commented the code out. If we need more words we can talk about the Forward and Backward. 
+
+
+```{r}
+#Chosen Model based on AIC
+model2<-glm(success~attacktype1+weaptype1+region+suicide+targtype1, family="binomial", data_processed)
+summary(model2)
+```
+Huge standard errors in weapontype and none are significant, indicates numerical instability. Let's remove it! 
+
+
+
+```{r}
+#Removing weaptype
+model3<-glm(success~attacktype1+region+suicide+targtype1, family="binomial", data_processed)
+summary(model3)
+```
+Standard Errors look better with the exception of targtype Food or Water Supply. 
+
+
+#Split into Test/ Training Data for Validation and Create Confusion Matrix
+
+```{r}
+set.seed(4)
+
+#Training data 80% of the observations
+train_size<- floor(0.8 * nrow(data_processed))
+
+#Random indices
+train_indices <- sample(seq_len(nrow(data_processed)), size = train_size)
+
+#Create train and test datasets
+train_data <- data_processed[train_indices, ]
+test_data <- data_processed[-train_indices, ]
+
+# Fit the logistic regression model on the training data
+model3 <- glm(success ~ attacktype1 + region + suicide + targtype1, family = "binomial", data = train_data)
+
+# predictions on the test data
+predictions <- predict(model3, newdata = test_data, type = "response")
+
+# Convert probabilities to binary predictions- chose a threshold of 0.5
+binary_predictions <- ifelse(predictions > 0.5, 1, 0)
+
+cm_results <- confusionMatrix(as.factor(binary_predictions), as.factor(test_data$success), positive = "1") #or 0, based on your positive class.
+
+# Print the confusion matrix and all the summary statistics
+print(cm_results)
+
+# Extract and print accuracy (if needed)
+accuracy <- cm_results$overall["Accuracy"]
+print(paste("Accuracy:", accuracy))
+
+```
+
+
+#Using k-fold CV instead of a 80/20 Split
+```{r}
+data_processed <- data_processed %>%
+  mutate(success = case_when(
+    success == 1 ~ "Success",
+    success == 0 ~ "Failure",
+    TRUE ~ as.character(success) # Handle other cases if any
+  )) %>%
+  mutate(success = as.factor(success)) # Convert to factor
+
+
+set.seed(4)
+# Define the training control for 10-fold cross-validation
+train_control <- trainControl(
+  method = "cv",
+  number = 10,
+  savePredictions = "final", # Save predictions for later analysis
+  classProbs = TRUE, # Important for ROC
+  summaryFunction = twoClassSummary # Important for ROC
+)
+
+# Train the logistic regression model using cross-validation
+model_cv <- train(
+  success ~ attacktype1 + region + suicide + targtype1,
+  data = data_processed,
+  method = "glm",
+  family = "binomial",
+  trControl = train_control,
+  metric="ROC"
+)
+
+
+# Print cross-validation results
+print(model_cv)
+
+# Get the final model from cross-validation
+final_model_cv <- model_cv$finalModel
+
+# Get the cross-validated predictions
+cv_predictions <- model_cv$pred
+
+# Evaluate the model (confusion matrix) on the cross-validation predictions
+confusion_matrix_cv <- confusionMatrix(cv_predictions$pred, cv_predictions$obs)
+print(confusion_matrix_cv)
+
+# Calculate accuracy
+accuracy_cv <- sum(diag(confusion_matrix_cv$table)) / sum(confusion_matrix_cv$table)
+print(paste("Accuracy (Cross-Validated Model):", accuracy_cv))
+
+```
+Nearly identical accuracy, but theoretically more robust. Specificity is super high and sensitivity is super low.  Theres a lot to talk about with the sensitivity and specificity   Talk why the CV better than the other way of splitting the sample.
+
+#Visualizing with ROC curve
+```{r}
+# Calculate ROC curve and AUC using cross-validated predictions
+roc_obj_cv <- roc(cv_predictions$obs, cv_predictions$Success) # Use "Success" as the positive class
+
+# Plot the ROC Curve
+plot(roc_obj_cv, main = "Cross-Validated ROC Curve", col = "blue", lwd = 2)
+
+# Add AUC to the plot
+auc_value_cv <- auc(roc_obj_cv)
+text(0.6, 0.2, paste("AUC =", round(auc_value_cv, 4)))
+
+# Print AUC
+print(paste("Cross-Validated AUC:", auc_value_cv))
+```
+
+Accrd to Gemini:
+AUC:
+The AUC ranges from 0 to 1. 
+An AUC of 0.5 indicates random guessing. 
+An AUC greater than 0.7 is generally considered good.
+An AUC close to 1 indicates excellent performance. 
+
+The ROC (Receiver OPerating Characteristi) curve helps visualize the trade-off between sensitivity (true positive rate) and specificity (true negative rate) at different thresholds.
+
+#Youdens J statistic - Choosing a different Threshold
+```{r}
+# Find the optimal threshold using Youden's J statistic
+optimal_threshold_cv <- coords(roc_obj_cv, "best", best.method = "youden", ret = "threshold")
+print(paste("Optimal Threshold (Youden's J):", optimal_threshold_cv))
+
+# Apply optimal threshold to cross-validated predictions
+binary_predictions_optimal_cv <- ifelse(cv_predictions$Success > 0.851, "Success", "Failure")
+
+# Evaluate with optimal threshold
+conf_matrix_optimal_cv <- confusionMatrix(as.factor(binary_predictions_optimal_cv), cv_predictions$obs)
+print(conf_matrix_optimal_cv)
+
+# Calculate accuracy with optimal threshold
+accuracy_optimal_cv <- sum(diag(conf_matrix_optimal_cv$table)) / sum(conf_matrix_optimal_cv$table)
+print(paste("Accuracy with Optimal Threshold:", accuracy_optimal_cv))
+```
+It actually decreased accuracy but made sensitivity and specificty more even which is interesting. 
+
+
+
+
+ 
